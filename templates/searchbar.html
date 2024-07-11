@@ -1,0 +1,73 @@
+
+{% extends 'index.html' %}
+{% load static %}
+{% block content %}
+
+
+  <body>
+    <body class="p-0 m-0 border-0 bd-example m-0 border-0">
+
+        <!-- Example Code -->
+        
+        <nav class="navbar navbar-expand-sm  navbar-light" style="background-color:#FCF3CF  ">
+          <!--<a class="navbar-brand" href="#">
+            <img src="{% static 'img\logo1.png' %}" alt="Logo" style="width:90px;">
+          </a>-->
+          <div class="container-fluid">
+            <a class="navbar-brand me-4" >Books & Us</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+                </li>
+                  
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'home' %}">ALL</a></li>
+                
+              </li>
+           
+              
+            </ul>
+              
+    </div>
+</div>
+</nav>
+
+<h2 class="text-center"> search results </h2>
+
+
+<div class="container">
+
+    <div class="row justify-content-center m-2">
+
+{% if books %}
+
+  {% for book in books %}
+
+
+  <div class="col-md-4">
+    <div class="card m-3 p-2" style="width: 18rem; height: 30rem; box-shadow: 4px 4px grey;">
+      <img src={{ book.image.url }}  class="card-img-top" alt="..." width="300" height="300">
+     <div class="card-body">
+     <h5 class="card-title m-1"> {{ book.title }}</h5>
+     <h6 class="card-title mt-1"> by {{ book.author }}</h6>
+    <hr>
+<a href="{% url 'book_desc' book.pk %}" class="btn btn-primary mt-2">view</a>
+</div>
+</div>
+</div>
+
+  {% endfor %}
+
+  {% else %}
+   <center><p>No books available</p></center>
+  {% endif %}
+
+
+
+{% endblock %}
